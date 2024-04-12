@@ -20,10 +20,12 @@ find_package(OpenGL REQUIRED)
 set( SRC 
 	main.cpp
 	${PROJECT_SOURCE_DIR}/src/glad.c
+	${PROJECT_SOURCE_DIR}/src/shader.cpp
 )
 
 include_directories(
 	${PROJECT_SOURCE_DIR}/include
+	${PROJECT_SOURCE_DIR}/src
 )
 
 add_executable(main ${SRC} )
