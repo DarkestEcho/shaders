@@ -42,7 +42,7 @@ int main(int, char**)
     // build and compile our shader program
  // ------------------------------------
  // vertex shader
-    Shader shader("../shaders/shader_002.vs", "../shaders/shader_002.fs");
+    Shader shader("../shaders/shader_003.vs", "../shaders/shader_003.fs");
 
     float vertices[] = {
         0.0f,  0.5f, 0.0f,  // top right
@@ -65,13 +65,10 @@ int main(int, char**)
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices_colors), vertices_colors, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
 
     glBindVertexArray(0);
 
