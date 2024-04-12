@@ -42,7 +42,7 @@ int main(int, char**)
     // build and compile our shader program
  // ------------------------------------
  // vertex shader
-    Shader shader("../shaders/shader_003.vs", "../shaders/shader_003.fs");
+    Shader shader("../shaders/shader_004.vs", "../shaders/shader_004.fs");
 
     float vertices[] = {
         0.0f,  0.5f, 0.0f,  // top right
@@ -73,7 +73,8 @@ int main(int, char**)
     glBindVertexArray(0);
 
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
+    float xOffset = 0.01f;
+    float xOffsetStep = 0.005f;
     while (!glfwWindowShouldClose(window))
     {
         // input
@@ -83,11 +84,17 @@ int main(int, char**)
         glClear(GL_COLOR_BUFFER_BIT);
 
         shader.Use();
-        /*
-                float timeValue = glfwGetTime();
-                float greenValue = sin(timeValue) / 2.0f + 0.5f;
-                shader.SetValue("ourColor", { 0.0f, greenValue, 0.0f, 1.0f });
-        */
+
+        float timeValue = glfwGetTime();
+        float redValue = sin(timeValue) / 2.0f + 0.5f;
+        //shader.SetValue("ourColor", { redValue, 0.0f, 0.0f, 1.0f });
+
+        //shader.SetValue("xOffset", xOffset);
+        xOffset += xOffsetStep;
+        if (xOffset >= 0.5f || xOffset <= -0.5f)
+        {
+            xOffsetStep *= -1;
+        }
         glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
         glDrawArrays(GL_TRIANGLES, 0, 3);
         // glBindVertexArray(0); // no need to unbind it every time 
